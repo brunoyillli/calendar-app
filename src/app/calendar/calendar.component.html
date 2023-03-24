@@ -1,0 +1,42 @@
+<div class="calendar-container">
+  <app-appointment-form (appointmentAdded)="addAppointment($event)"></app-appointment-form>
+  <div class="calendar-header">
+    <button mat-icon-button (click)="previousMonth()"><mat-icon>keyboard_arrow_left</mat-icon></button>
+    <h2>{{ monthNames[month] }} {{ year }}</h2>
+    <button mat-icon-button (click)="nextMonth()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let week of weeks">
+        <tr>
+          <ng-container *ngFor="let day of week">
+            <td>
+              <div class="day" (click)="openAddAppointmentDialog(day)">
+                {{ day.getDate() }}
+              </div>
+              <div class="appointments" cdkDropList [cdkDropListData]="getAppointmentsForDay(day)"
+                (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let appointment of getAppointmentsForDay(day)" cdkDrag>
+                  <app-appointment [appointment]="appointment" (deleteAppointment)="deleteAppointment($event)"
+                    (appointmentChanged)="updateAppointment({ appointment: appointment, newDate: day })"></app-appointment>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,29 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  mat-form-field {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  mat-error {
+    font-size: 12px;
+    color: red;
+  }
+  
+  button {
+    align-self: flex-end;
+  }
+
+  .add-button {
+    background-color: #009688;
+    color: #fff;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  
+  

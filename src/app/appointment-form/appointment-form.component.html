@@ -1,0 +1,16 @@
+<form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Appointment Title</mat-label>
+    <input matInput formControlName="title">
+    <mat-error *ngIf="appointmentForm.controls['title'].invalid">The field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Appointment date and time</mat-label>
+    <input matInput formControlName="date" type="datetime-local">
+    <mat-error *ngIf="appointmentForm.controls['date'].invalid">The field is required</mat-error>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary" class="add-button">Add Appointment</button>
+
+
+</form>
